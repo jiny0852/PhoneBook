@@ -3,12 +3,14 @@ package com.javaex.phonebook;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -43,11 +45,7 @@ public class PhoneAppApp {
 				//System.out.println("파일 읽기 끝");
 				break;
 			}
-		
-			String[] re = str.split(",");
-		
-			pList.add(new Person(re[0], re[1], re[2]));
-		
+			readFile(pList, str);
 		}
 		
 		System.out.println("============================");
@@ -70,10 +68,7 @@ public class PhoneAppApp {
 					
 					System.out.println("<1. 리스트>");
 					
-					for (int i = 0; i <pList.size(); i++ ) {
-						System.out.print( (i+1) );
-						pList.get(i).showInfo();
-					}
+					printUser(pList);
 					
 					break;
 				
@@ -109,7 +104,7 @@ public class PhoneAppApp {
 					System.out.println("정보를 입력하세요");
 					System.out.print(">> 번호 : ");
 					int delNum = sc.nextInt();
-					
+					      
 					pList.remove(delNum-1);
 					System.out.println("[" + delNum +"번 삭제되었습니다]");
 					
@@ -165,7 +160,12 @@ public class PhoneAppApp {
 		br.close();
 		System.out.println("프로그램 종료");
 	}
+	
+
 
 	
 
 }
+
+
+

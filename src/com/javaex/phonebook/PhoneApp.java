@@ -35,6 +35,21 @@ public class PhoneApp {
 		
 		List<Person> pList = new ArrayList<Person>();
 		
+		while (true) {
+			
+			String str = br.readLine(); 
+		
+			if (str == null) {
+				//System.out.println("파일 읽기 끝");
+				break;
+			}
+		
+			String[] re = str.split(",");
+		
+			pList.add(new Person(re[0], re[1], re[2]));
+		
+		}
+		
 		System.out.println("============================");
 		System.out.println("=======주소록 관리 프로그램=======");
 		System.out.println("============================");
@@ -55,20 +70,7 @@ public class PhoneApp {
 					
 					System.out.println("<1. 리스트>");
 					
-					while (true) {
-						
-						String str = br.readLine(); 
 					
-						if (str == null) {
-							//System.out.println("파일 읽기 끝");
-							break;
-						}
-					
-						String[] re = str.split(",");
-					
-						pList.add(new Person(re[0], re[1], re[2]));
-					
-					}
 					
 					for (int i = 0; i <pList.size(); i++ ) {
 						System.out.print( (i+1) );
@@ -91,7 +93,22 @@ public class PhoneApp {
 					
 					//String[] re = new String[3];
 					System.out.println("정보를 입력하세요");
-					String enterStr = sc.nextLine();
+					
+					try {
+						
+						String enterStr = sc.nextLine();
+						String[] re = enterStr.split(",");
+						pList.add(new Person(re[0], re[1], re[2]));
+						
+						
+						
+						
+					} catch (ArrayIndexOutOfBoundsException e) {
+						System.out.println(e);
+					}
+					
+					
+					
 					/*
 					System.out.print(">> 이름 : ");
 					re[0] = sc.nextLine();
@@ -100,9 +117,9 @@ public class PhoneApp {
 					System.out.print(">> 회사 : ");
 					re[2] = sc.nextLine();
 						*/
-					String[] re = enterStr.split(",");
+					//String[] re = enterStr.split(",");
 					
-					pList.add(new Person(re[0], re[1], re[2]));	
+					
 										
 					
 					break;
